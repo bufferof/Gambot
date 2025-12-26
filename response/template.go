@@ -25,10 +25,14 @@ func Error_embed(description string) *discordgo.MessageEmbed {
 	}
 }
 
-func Make_btn(label, cID string, style discordgo.ButtonStyle) discordgo.Button{
-	return  discordgo.Button{
-		Label: label,
-		Style: style,
-		CustomID: cID,
+func Make_btn(label, cID string, style discordgo.ButtonStyle) discordgo.MessageComponent {
+	return discordgo.ActionsRow{
+		Components: []discordgo.MessageComponent{
+			discordgo.Button{
+				Label:    label,
+				CustomID: cID,
+				Style:    style,
+			},
+		},
 	}
 }

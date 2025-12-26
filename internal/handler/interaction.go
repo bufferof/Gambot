@@ -6,13 +6,19 @@ import (
 )
 
 func InteractionCreate(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	if i.Type != discordgo.InteractionApplicationCommand {
-		return
-	}
+	switch i.Type {
+	case discordgo.InteractionApplicationCommand:
+		name := i.ApplicationCommandData().Name
 
-	name := i.ApplicationCommandData().Name
+		if handler, ok := commands.Handlers[name]; ok {
+			handler(s, i)
+		}
 
-	if handler, ok := commands.Handlers[name]; ok {
-		handler(s, i)
+	case discordgo.InteractionMessageComponent:
+		cid := i.MessageComponentData().CustomID
+
+		if handler, ok := commands.BtnHandlers[cid]; ok {
+			handler(s, i)
+		}
 	}
 }

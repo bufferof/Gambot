@@ -19,8 +19,17 @@ func SlotMachineHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 				response.Make_embed("슬롯머신", "아래 버튼을 눌러 스롯머신을 돌리세요!", 0xFFD700),
 			},
 			Components: []discordgo.MessageComponent{
-				response.Make_btn("💰", "slot_run", discordgo.PremiumButton),
+				response.Make_btn("💰", "slot_run", discordgo.PrimaryButton),
 			},
 		},
 	)
+}
+
+func SlotRunHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseUpdateMessage,
+		Data: &discordgo.InteractionResponseData{
+			Content: "test222222",
+		},
+	})
 }
