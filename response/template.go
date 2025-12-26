@@ -24,3 +24,11 @@ func Error_embed(description string) *discordgo.MessageEmbed {
 		Color:       0xED4245,
 	}
 }
+
+func Make_btn(label, cID string, style discordgo.ButtonStyle) discordgo.Button{
+	return  discordgo.Button{
+		Label: label,
+		Style: style,
+		CustomID: cID,
+	}
+}
