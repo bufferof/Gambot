@@ -13,5 +13,6 @@ var Handlers = map[string]func(*discordgo.Session, *discordgo.InteractionCreate)
 }
 
 var BtnHandlers = map[string]func(*discordgo.Session, *discordgo.InteractionCreate){
-	"slot_run": SlotRunHandler,
+	"slot_confirm": SlotRunHandler,
+	"slot_run": Slot_run,
 }

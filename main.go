@@ -16,6 +16,12 @@ func main() {
 	config.Load()
 	log.Println("[+] Config Loaded!")
 
+	log.Println("[...] Loading DB")
+	config.Init_db(config.DB_Dsn)
+	log.Println("[+] DB Loaded!")
+
+	config.Get_user("12345")
+
 	token := config.Token
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {

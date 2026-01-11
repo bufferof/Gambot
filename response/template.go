@@ -36,3 +36,20 @@ func Make_btn(label, cID string, style discordgo.ButtonStyle) discordgo.MessageC
 		},
 	}
 }
+
+func EditMessageComplex(
+	s *discordgo.Session,
+	channelID string,
+	messageID string,
+	embeds []*discordgo.MessageEmbed,
+	components []discordgo.MessageComponent,
+) error {
+	_, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
+		Channel:    channelID,
+		ID:         messageID,
+		Embeds:     &embeds,
+		Components: &components,
+	})
+
+	return err
+}
